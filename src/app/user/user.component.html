@@ -1,0 +1,76 @@
+<!-- <h2>User List</h2>
+<ul>
+  <li *ngFor="let user of users">
+    <div *ngIf="editingUserId !== user.id">
+      <strong>{{ user.name }}</strong> - {{ user.email }}
+      <button (click)="startEditing(user)">Edit</button>
+      <button (click)="deleteUser(user.id)">Delete</button>
+    </div>
+
+    <div *ngIf="editingUserId === user.id">
+      <input [(ngModel)]="editedName" />
+      <input [(ngModel)]="editedEmail" />
+      <button (click)="saveUser(user)">Save</button>
+      <button (click)="cancelEdit()">Cancel</button>
+    </div>
+  </li>
+</ul>
+
+<h3>Add New User</h3>
+<input type="text" [(ngModel)]="newName" placeholder="Enter name" />
+<input type="email" [(ngModel)]="newEmail" placeholder="Enter email" />
+<button (click)="addUser()">Add User</button> -->
+
+<div class="container mt-4">
+  <h2 class="text-center mb-4">User Management</h2>
+
+  <!-- User Form -->
+  <div class="card p-3 mb-4">
+    <h4>Add New User</h4>
+    <div class="row g-2">
+      <div class="col-md-5">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="newName"
+          placeholder="Enter name" />
+      </div>
+      <div class="col-md-5">
+        <input
+          type="email"
+          class="form-control"
+          [(ngModel)]="newEmail"
+          placeholder="Enter email" />
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary w-100" (click)="addUser()">Add</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- User List -->
+  <ul class="list-group">
+    <li *ngFor="let user of users" class="list-group-item d-flex justify-content-between align-items-center">
+      
+      <!-- View Mode -->
+      <div *ngIf="editingUserId !== user.id" class="w-100 d-flex justify-content-between align-items-center">
+        <div>
+          <strong>{{ user.name }}</strong> - {{ user.email }}
+        </div>
+        <div>
+          <button class="btn btn-sm btn-warning me-2" (click)="startEditing(user)">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteUser(user.id)">Delete</button>
+        </div>
+      </div>
+
+      <!-- Edit Mode -->
+      <div *ngIf="editingUserId === user.id" class="w-100 d-flex flex-wrap gap-2 align-items-center">
+        <input [(ngModel)]="editedName" class="form-control form-control-sm w-auto" />
+        <input [(ngModel)]="editedEmail" class="form-control form-control-sm w-auto" />
+        <button class="btn btn-sm btn-success" (click)="saveUser(user)">Save</button>
+        <button class="btn btn-sm btn-secondary" (click)="cancelEdit()">Cancel</button>
+      </div>
+
+    </li>
+  </ul>
+</div>
